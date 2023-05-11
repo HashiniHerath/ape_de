@@ -15,6 +15,7 @@ import com.google.firebase.ktx.Firebase
 
 class PaymentUpdate : AppCompatActivity() {
 
+    // Declare EditText and Button variables
     private lateinit var cardName: EditText
     private lateinit var cardNumber: EditText
     private lateinit var cardExpire: EditText
@@ -22,6 +23,7 @@ class PaymentUpdate : AppCompatActivity() {
 
     private lateinit var updateCard: Button
 
+    // Initialize Firebase Firestore and Firebase Auth
     private var db = Firebase.firestore
     private lateinit var auth: FirebaseAuth
 
@@ -30,9 +32,11 @@ class PaymentUpdate : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment_update)
 
+        // Get instance of Firebase Firestore and Firebase Auth
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
+        // Assign the EditText and Button variables to their corresponding views
         cardName = findViewById(R.id.editTextTextPersonName21)
         cardNumber = findViewById(R.id.editTextTextPersonName25)
         cardExpire = findViewById(R.id.editTextTextPersonName23)
@@ -40,10 +44,12 @@ class PaymentUpdate : AppCompatActivity() {
 
         updateCard = findViewById(R.id.button19)
 
+        // Retrieve user's card details from Firebase Firestore
         db.collection("payments").document(auth.currentUser!!.uid).collection("userCardDetails").document(auth.currentUser!!.uid)
             .get()
             .addOnSuccessListener {
 
+                // If user's card details exist in Firebase Firestore, retrieve the card details and populate the EditText fields
                 if (it != null) {
                     val textCardNumberU = it.data?.get("cardNumber")?.toString()
                     val textCardNameU = it.data?.get("cardName")?.toString()
@@ -72,15 +78,18 @@ class PaymentUpdate : AppCompatActivity() {
                 Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
             }
 
+        // Set OnClickListener for the updateCard button to update user's card details in Firebase Firestore
         updateCard.setOnClickListener {
 
-            val userID = auth.currentUser?.uid.toString()
+            // Retrieve user's ID and the card details entered by the user
 
+            val userID = auth.currentUser?.uid.toString()
             val eCardName = cardName.text.toString().trim()
             val eCardNumber = cardNumber.text.toString().trim()
             val eCardEx = cardExpire.text.toString().trim()
             val eCardCVV = cardCVV.text.toString().trim()
 
+            // Create a map of the card details to update in Firebase Firestore
             val cardUpdateMap = mapOf(
                 "cardNumber" to eCardNumber,
                 "cardName" to eCardName,
