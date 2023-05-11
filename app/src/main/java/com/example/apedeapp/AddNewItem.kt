@@ -50,6 +50,7 @@ class AddNewItem : AppCompatActivity() {
 
         storageReference = FirebaseStorage.getInstance()
 
+        // Initialize views
         itemName = findViewById(R.id.editTextTextPersonName13)
         colour = findViewById(R.id.editTextTextPersonName14)
         price = findViewById(R.id.editTextTextPersonName15)
@@ -70,19 +71,24 @@ class AddNewItem : AppCompatActivity() {
 
             pb.visibility = View.VISIBLE
 
+            // Generate a random ID for the item
             val randomID = UUID.randomUUID().toString()
-            val sellerID = auth.currentUser?.uid.toString()
+            val sellerID = auth.currentUser?.uid.toString()    // Get the current user's ID
 
+            // Upload the image to Firebase Storage
             storageReference.getReference("Images/$sellerID").child(System.currentTimeMillis().toString())
                 .putFile(uri)
                 .addOnSuccessListener { task ->
                     task.metadata!!.reference!!.downloadUrl
                         .addOnSuccessListener { uri ->
 
+                            // Get the values from the input fields
                             val eItemName = itemName.text.toString().trim()
                             val eColor = colour.text.toString().trim()
                             val ePrice = price.text.toString().trim()
                             val eDescription = description.text.toString().trim()
+
+                            // Create a HashMap to store item details
 
                             val sellerMap = hashMapOf(
                                 "sellerID" to sellerID,
@@ -100,6 +106,8 @@ class AddNewItem : AppCompatActivity() {
                                 .set(sellerMap)
                                 .addOnSuccessListener {
                                     pb.visibility = View.INVISIBLE
+
+                                    // Navigate to StoreView activity
                                     val i = Intent(this, StoreView::class.java)
                                     startActivity(i)
                                     finish()
