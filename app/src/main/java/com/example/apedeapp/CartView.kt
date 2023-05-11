@@ -15,17 +15,20 @@ import com.google.firebase.ktx.Firebase
 
 class CartView : AppCompatActivity() {
 
+    // Declare variables for the views used in this activity
     private lateinit var adapter: RecyclerView.Adapter<CartAdapter.CartViewHolder> // Define the adapter variable
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var cartItemList: ArrayList<Cart>
-    private var db = Firebase.firestore
+
 
     private lateinit var checkOut: Button
 
     private lateinit var totalPrice: TextView
 
+    // Initialize Firebase Firestore database and Firebase Authentication
     private lateinit var auth: FirebaseAuth
+    private var db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +37,13 @@ class CartView : AppCompatActivity() {
         totalPrice = findViewById(R.id.textView38)
         checkOut = findViewById(R.id.button7)
 
+        // Initialize the RecyclerView and set its layout manager
         recyclerView= findViewById(R.id.cartItems)
         recyclerView.layoutManager= LinearLayoutManager(this)
 
         cartItemList = arrayListOf()
 
+        // Get the current user's ID from Firebase Authentication
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
@@ -64,7 +69,7 @@ class CartView : AppCompatActivity() {
             totalPrice.text = totalAmount.toString()
         }
 
-
+        // Retrieve cart items from Firestore and display them in the RecyclerView
         db.collection("cart").document(userID).collection("singleUser").get()
             .addOnSuccessListener {
                 for (data in it.documents){
@@ -73,6 +78,7 @@ class CartView : AppCompatActivity() {
                         cartItemList.add(cart)
                     }
                 }
+                // Initialize the RecyclerView adapter and set it to the RecyclerView
                 recyclerView.adapter =CartAdapter(cartItemList, this,db,userID)
 
 
