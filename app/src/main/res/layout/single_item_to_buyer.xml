@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <TextView
+                    android:id="@+id/selItemTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="0dp"
+                    android:text="Coconut Shell Handmade Paint Dishes"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/sellerId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="45dp"
+                    android:text="ID"
+                    android:textColor="#C2A3C8"
+                    android:textSize="1dp" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="2dp" />
+
+
+                <TextView
+                    android:id="@+id/color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/sellerId"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/imageView3"
+                    android:layout_toRightOf="@id/imageView3"
+                    android:text="Color" />
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/color"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/imageView3"
+                    android:layout_toRightOf="@id/imageView3"
+                    android:text="Price" />
+
+                <TextView
+                    android:id="@+id/desription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/price"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/imageView3"
+                    android:layout_toRightOf="@id/imageView3"
+                    android:text="Description" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Add To Cart"
+                    android:textColor="@color/purple_500"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

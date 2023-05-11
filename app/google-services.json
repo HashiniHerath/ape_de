@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "779338303892",
+    "firebase_url": "https://ape-de-fire-base-default-rtdb.firebaseio.com",
+    "project_id": "ape-de-fire-base",
+    "storage_bucket": "ape-de-fire-base.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779338303892:android:134da10dc2212f27422781",
+        "android_client_info": {
+          "package_name": "com.example.apedeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779338303892-eq8aol1u1q4djmb48gctpvina6nj9mtq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVI0NIGq1QT2Np2ioEI1oPulBZWdyzHNs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779338303892-eq8aol1u1q4djmb48gctpvina6nj9mtq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
