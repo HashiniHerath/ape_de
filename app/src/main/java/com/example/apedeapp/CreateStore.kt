@@ -18,18 +18,22 @@ import com.google.firebase.ktx.Firebase
 
 class CreateStore : AppCompatActivity() {
 
+
+// declare variables for the views
+
     private lateinit var shopName: EditText
     private lateinit var shopAddress: EditText
     private lateinit var shopContactNumber: EditText
     private lateinit var sellerGmail: EditText
     private lateinit var sellerPassword: EditText
 
+
     private lateinit var createStore: Button
 
     private lateinit var pb:ProgressBar
-
+    // declare variable for Firebase authentication
     private lateinit var auth: FirebaseAuth
-
+    // declare variable for Firebase Firestore database
     private var database = Firebase.firestore
 
     @SuppressLint("MissingInflatedId")
@@ -38,7 +42,7 @@ class CreateStore : AppCompatActivity() {
         setContentView(R.layout.activity_create_store)
 
         auth = FirebaseAuth.getInstance()
-
+// initialize the views
         shopName = findViewById(R.id.editTextTextPersonName)
         shopAddress = findViewById(R.id.editTextTextPersonName2)
         shopContactNumber = findViewById(R.id.editTextTextPersonName3)
@@ -52,7 +56,7 @@ class CreateStore : AppCompatActivity() {
         pb.visibility = View.INVISIBLE
 
         createStore.setOnClickListener {
-
+            // make progress bar visible
             pb.visibility = View.VISIBLE
 
             var eSignupEmail = sellerGmail.text.toString().trim()
@@ -65,11 +69,11 @@ class CreateStore : AppCompatActivity() {
             if (TextUtils.isEmpty(eSignupEmail)){
                 Toast.makeText(this, "Please Enter Email", Toast.LENGTH_SHORT).show()
             }
-
+             // check if the password field is empty
             if (TextUtils.isEmpty(eSignupPassword)){
                 Toast.makeText(this, "Please Enter Password", Toast.LENGTH_SHORT).show()
             }
-
+           // create user in Firebase authentication with the given email and password
             auth.createUserWithEmailAndPassword(eSignupEmail, eSignupPassword)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
