@@ -12,6 +12,7 @@ import java.util.*
 
 class AddToCart : AppCompatActivity() {
 
+    // Declare variables for the views used in this activity
     private lateinit var itemName: TextView
     private lateinit var quantity: TextView
     private lateinit var bottomPrice: TextView
@@ -24,6 +25,7 @@ class AddToCart : AppCompatActivity() {
 
     private lateinit var addToCart: Button
 
+    // Initialize Firebase Firestore database and Firebase Authentication
     private var db = Firebase.firestore
     private lateinit var auth: FirebaseAuth
 
@@ -31,6 +33,7 @@ class AddToCart : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_to_cart)
 
+        // Connect the declared views to their respective XML views
         itemName = findViewById(R.id.textView3)
         quantity = findViewById(R.id.editTextTextPersonName14)
         bottomPrice = findViewById(R.id.textView9)
@@ -45,6 +48,7 @@ class AddToCart : AppCompatActivity() {
 
         addToCart = findViewById(R.id.textView12)
 
+        // Retrieve item details from the previous activity using intents and set the corresponding views to display them
         itemName.text = intent.getStringExtra("iName").toString()
         bottomPrice.text = intent.getStringExtra("iPrice").toString()
         itemID.text = intent.getStringExtra("itemID").toString()
@@ -53,9 +57,11 @@ class AddToCart : AppCompatActivity() {
             .load(imageUrl)
             .into(image)
 
+        // Get the bottom price of the item in integer format
         val botPrice: Int = bottomPrice.text.toString().trim().toInt()
         println(botPrice)
 
+        // Increase the quantity of the item when the plus button is clicked
         plusQuantity.setOnClickListener{
 
             val yourInteger: Int = quantity.text.toString().trim().toInt()
@@ -69,6 +75,7 @@ class AddToCart : AppCompatActivity() {
             bottomPrice.text = (yourIntegerPrice + botPrice).toString()
         }
 
+        // Decrease the quantity of the item when the minus button is clicked
         minusQuantity.setOnClickListener{
 
             val yourInteger: Int = quantity.text.toString().trim().toInt()
@@ -87,6 +94,7 @@ class AddToCart : AppCompatActivity() {
             }
         }
 
+        // Add the item to the user's cart
         addToCart.setOnClickListener {
 
             val buyerID = auth.currentUser?.uid.toString()
